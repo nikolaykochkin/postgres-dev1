@@ -1,12 +1,28 @@
-version: "3"
+version: "3.9"
 
 services:
   postgres:
     image: postgres:13
+    hostname: postgres
     environment:
       - POSTGRES_PASSWORD=postgres
     ports:
-      - 5432:5432
+      - "5432:5432"
+    networks:
+      - dev1
+
+  bookstore:
+    build:
+      context: ./bookstore
+      network: host
+    image: bookstore:local
+    ports:
+      - "8888:80"
+    networks:
+      - dev1
+    depends_on:
+      - postgres
+
   pgadmin:
     image: dpage/pgadmin4:latest
     environment:
@@ -14,11 +30,21 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=postgres
     ports:
       - 80:80
-  # cloudbeaver:
-  #   image: dbeaver/cloudbeaver:latest
-  #   ports:
-  #     - 8978:8978
-  # adminer:
-  #   image: adminer:latest
-  #   ports:
-  #     - 8080:8080
+    networks:
+      - dev1
+
+#  cloudbeaver:
+#    image: dbeaver/cloudbeaver:latest
+#    ports:
+#      - 8978:8978
+#    networks:
+#      dev1:
+#  adminer:
+#    image: adminer:latest
+#    ports:
+#      - 8080:8080
+#    networks:
+#      dev1:
+
+networks:
+  dev1:

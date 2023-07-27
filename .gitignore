@@ -1,3 +1,13 @@
+# VSCode
 .vscode
 
 DEV1-handouts-12
+
+# IntelliJ
+.idea
+*.ipr
+*.iml
+*.iws
+
+# OSX
+.DS_Store
