@@ -1,0 +1,5 @@
+CREATE ROLE student WITH LOGIN PASSWORD 'student';
+
+CREATE DATABASE bookstore;
+GRANT ALL PRIVILEGES ON DATABASE bookstore TO postgres;
+GRANT ALL PRIVILEGES ON DATABASE bookstore TO student;
