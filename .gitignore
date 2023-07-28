@@ -11,3 +11,5 @@ DEV1-handouts-12
 
 # OSX
 .DS_Store
+
+pgdata
